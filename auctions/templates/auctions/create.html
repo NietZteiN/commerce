@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+     <form action="{% url 'create' %}" method="POST">
+         {% csrf_token %}
+         <input type="text" name="title" placeholder="Name">
+         <br>
+         <textarea name="description" style="height:30%; width:50%;">
+Enter text description 
+         </textarea> 
+         <br> 
+         <input type="text" name="starting_bid" placeholder="Starting Bid"> 
+         <br> 
+         <input type="text" name="url" placeholder="URL of image "> 
+         <br> 
+         <p>Category: </p>
+         <input type="radio" name="category" value="FA"> 
+         <label for="fa">Fashion</label>
+         <input type="radio" name="category" value="TO"> 
+         <label for="to">Toys</label>
+         <input type="radio" name="category" value="EL"> 
+         <label for="el">Electronics</label>
+         <input type="radio" name="category" value="HO"> 
+         <label for="ho">Home</label>
+         <input type="radio" name="category" value="GA"> 
+         <label for="ga">Games</label>
+         <input type="radio" name="category" value="MI"> 
+         <label for="mi">Miscellaneous</label>
+         <br> 
+         <input type="submit"> 
+     </form>
+
+{% endblock %}

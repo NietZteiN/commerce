@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<form action="{% url 'categories' %}" method="POST">
+    {% csrf_token %}
+    <p>Category: </p>
+    <input type="radio" name="cat" value="FA">
+    <label for="fa">Fashion</label>
+    <input type="radio" name="cat" value="TO">
+    <label for="to">Toys</label>
+    <input type="radio" name="cat" value="EL">
+    <label for="el">Electronics</label>
+    <input type="radio" name="cat" value="HO">
+    <label for="ho">Home</label>
+    <input type="radio" name="cat" value="GA">
+    <label for="ga">Games</label>
+    <input type="radio" name="cat" value="MI">
+    <label for="mi">Miscellaneous</label>
+    <br>
+    <input type="submit">
+
+</form>
+
+    {% for listing in listings %}
+    {% csrf_token %}
+        <a href="{% url 'listing' listing.id %}"><h4> Title: {{ listing.title }}</h4></a>
+        <h5> Price: {{ listing.minimumbid }}</h5>
+        <h5> Category: {{ listing.category }}</h5>
+        <p> Description: {{ listing.description }} </p>
+            {% if listing.image is not None %}
+        <img src="{{ listing.image }}" />
+            {% else %}
+        <p>no image</p>
+            {% endif %}
+        <br />
+            {% endfor %}
+
+{% endblock %}
